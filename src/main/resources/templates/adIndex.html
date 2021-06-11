@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AdLister</title>
+</head>
+<body>
+
+<h2>All Ads example:</h2>
+<div th:each="ad : ${ads}">
+    <h3 th:text="${ad.title}"></h3>
+    <p th:text="${ad.description}" />
+</div>
+<h2>A single ad:</h2>
+<div>
+    <h3>Check out the community's top voted ad:</h3>
+    <h3 th:text="${topAd.title}"></h3>
+    <p th:text="${topAd.description}"></p>
+</div>
+</body>
+</html>
