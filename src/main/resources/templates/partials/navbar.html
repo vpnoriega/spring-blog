@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<!-- wherever you inject your head and your scripts in the file, it will give you access to the bootstrap-->
+<head th:fragment="head">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
+
+
 <body>
 <nav th:fragment="exercise-navbar" class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -33,6 +37,19 @@
     </div>
 </nav>
 
+<div th:fragment="scripts" th:tag="hide">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</div>
 
+<footer th:fragment="footer">
+    <ul class="list-inline">
+        <li class="list-inline-item">Home</li>
+        <li class="list-inline-item">Services</li>
+        <li class="list-inline-item">About</li>
+        <li class="list-inline-item">Terms</li>
+        <li class="list-inline-item">Privacy Policy</li>
+    </ul>
+    <p class="copyright">Post Blog © 2021</p>
+</footer>
 </body>
 </html>
