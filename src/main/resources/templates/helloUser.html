@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HelloUser</title>
 </head>
 <body>
 
-<h3> Hello there <span th:text="${'Hello there ' + UsersName}"></span> you will never see me </h3>
+<h3> Hello there <span th:text="${'user: ' + usersName}"> placeholder data you won't see</span></h3>
 
 </body>
 </html>
+
+<!-- Thymeleaf will automatically escape the variable inside of a th:text
+Thymeleaf allows us to use placeholder data in our templates inside of the <span> tag so it can open the template in our browser directly and make changes to the HTML, CSS, and JavaScript rapidly, without the need to have (or continuously restart) an entire application server running.-->
+

@@ -20,10 +20,12 @@ public class HelloController {
 //        return "Hello from Spring Boot to " + name +" in Marco!";
 //    }
 
+
+    /** PASSING DATA TO VIEWS NOTES*/
+    // A MODEL in this context is what Spring refers to a VIEW as. It is NOT a model in the sense that it represents data from our database
     @GetMapping("/hello/{name}")
-    public String hello(@PathVariable String name,
-    Model model){
-        model.addAttribute("UsersName", name);
-        return "helloUser";
+    public String hello(@PathVariable String name, Model model){
+        model.addAttribute("usersName", name);
+        return "helloUser"; //looks for the html helloUser.html
     }
 }
