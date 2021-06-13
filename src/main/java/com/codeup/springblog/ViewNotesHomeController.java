@@ -12,4 +12,4 @@ public class ViewNotesHomeController {
 }
 
 //We have the @Controller and @GetMapping annotation, but no @ResponseBody annotation
-//We need to create a home.html because our application configures Spring to resolve view names returned from controller methods. So when the string "home" is returned in the controller, Spring wil try to find a file named home.html inside of the resources/templates
+//We need to create a home.html because our application configures Spring to resolve view names returned from controller methods. So when the string "home" is returned in the controller, Spring will try to find a file named home.html inside of the resources/templates

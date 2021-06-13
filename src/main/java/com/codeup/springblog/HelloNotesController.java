@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller //defines the class of the controller
 public class HelloNotesController {
     @GetMapping("/hellonotes") // defines the method that should be invoked when a GET request is received from the URI
-    @ResponseBody //tells spring that whatever is returned should be in the BODY of our reponse
+    @ResponseBody //tells spring that whatever is returned should be in the BODY of our response
     public String hello(){
         return "Hello there from my notes!";
     }
