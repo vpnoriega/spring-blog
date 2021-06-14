@@ -21,11 +21,12 @@ public class PostController{
         List<Post> PostList = new ArrayList<>();
         PostList.add(new Post("Phonecase", "Old school phone case from the 90s"));
         PostList.add(new Post("Headphones", "Old school wire headphones"));
-//views ex:
+//views ex)
 // model.addAttribute("currentPosts", PostList);
 
  //jpa ex:
         model.addAttribute("currentPosts",postDao.findAll());
+//        model.addAttribute("delete",postDao.delete());
         return "posts/index";
     }
 
