@@ -10,12 +10,22 @@ import java.util.List;
 @Controller
 public class PostController{
 
+    //Dependency injection: Create a Repository instance and initialize it in the controller class constructor
+    private final PostRepository postDao;
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+
     @GetMapping("/posts")
     public String index(Model model){
         List<Post> PostList = new ArrayList<>();
         PostList.add(new Post("Phonecase", "Old school phone case from the 90s"));
         PostList.add(new Post("Headphones", "Old school wire headphones"));
-        model.addAttribute("currentPosts", PostList);
+//views ex:
+// model.addAttribute("currentPosts", PostList);
+
+ //jpa ex:
+        model.addAttribute("currentPosts",postDao.findAll());
         return "posts/index";
     }
 

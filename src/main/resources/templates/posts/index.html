@@ -10,6 +10,7 @@
     <h2 th:text="${post.title}"></h2> <!--referencing the constructor in Post.java-->
     <p th:text="${post.body}"></p>
 </th:block>
+
 <a href="/posts/1">Click here to view my exclusive posts!</a> <!-- This referencing the post/{id} method -->
 <footer th:replace="partials/navbar :: footer"></footer>
 </body>
