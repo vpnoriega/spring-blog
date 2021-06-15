@@ -40,20 +40,21 @@ public class PostController{
     }
 
     @RequestMapping(path="/posts/create", method = RequestMethod.GET)
-    @ResponseBody
-    public String viewForm(){
-        return "view the form for creating a post";
+    public String viewCreateForm(Model model){
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
 
     @PostMapping(path="/posts/create")
-    @ResponseBody
-    public String createForm(@RequestParam (value = "userEmail") String userEmail, @RequestParam (value = "title") String title, @RequestParam (value = "body") String body){
-        User owner = userDao.getById(1L);
-        Post post = new Post(1, owner, title, body);
-
-        return "create a new post";
+    public String createForm(@ModelAttribute Post post){
+            User user = userDao.getById(1L);
+            post.setOwner(user);
+            Post savedPost = postDao.save(post);
+        return "redirect:/posts/" + savedPost.getId();
     }
+
+    // without the / in the front of the redirect url, it will append it to the current url
 
     @PostMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id){

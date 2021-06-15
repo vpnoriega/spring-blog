@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/navbar :: head">
+    <title>Create Form</title>
+</head>
+<body>
+<h3>Create a new posting: </h3>
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+  Title:
+  <input name="title" th:field="*{title}"/>
+  <br/>
+  Description:
+  <input name="body" th:field="*{body}"/>
+  <br/>
+  <input type="submit"/>
+</form>
+</body>
+</html>
