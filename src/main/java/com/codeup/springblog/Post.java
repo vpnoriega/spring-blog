@@ -32,6 +32,13 @@ public class Post {
         this.body = body;
     }
 
+    public Post(long id, User owner, String title, String body){
+        this.id = id;
+        this.owner = owner;
+        this.title = title;
+        this.body = body;
+    }
+
     public String getTitle(){
         return title;
     }
@@ -56,4 +63,11 @@ public class Post {
         this.id = id;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

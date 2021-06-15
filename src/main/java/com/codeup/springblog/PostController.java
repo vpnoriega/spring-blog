@@ -35,7 +35,7 @@ public class PostController{
 
    @RequestMapping(path="/posts/{id}", method = RequestMethod.GET) //same as: GetMapping()
    public String viewSinglePost(@PathVariable long id, Model model){
-       model.addAttribute("singlePost", new Post("Cassette Player", "Comes with batteries"));
+       model.addAttribute("singlePost", postDao.getById(id));
         return "posts/show";
     }
 
@@ -45,9 +45,13 @@ public class PostController{
         return "view the form for creating a post";
     }
 
+
     @PostMapping(path="/posts/create")
     @ResponseBody
-    public String createForm(){
+    public String createForm(@RequestParam (value = "userEmail") String userEmail, @RequestParam (value = "title") String title, @RequestParam (value = "body") String body){
+        User owner = userDao.getById(1L);
+        Post post = new Post(1, owner, title, body);
+
         return "create a new post";
     }
 
@@ -56,6 +60,8 @@ public class PostController{
         postDao.deleteById(id);
         return "redirect:/posts";
     }
+
+
 //create the postMapping and getmapping(add an attribute, talk to the param, create the form, connect the two , the save method
 
 }
