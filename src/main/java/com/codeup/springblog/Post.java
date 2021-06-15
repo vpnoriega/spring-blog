@@ -15,6 +15,10 @@ public class Post {
     @Column(nullable = false, length = 500)
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name="owner_id")
+    private User owner;
+
     public Post(){}
 
     public Post(String title, String body){
@@ -51,4 +55,5 @@ public class Post {
     public void setId(long id){
         this.id = id;
     }
+
 }

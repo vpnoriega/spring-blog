@@ -12,9 +12,13 @@ public class PostController{
 
     //Dependency injection: Create a Repository instance and initialize it in the controller class constructor
     private final PostRepository postDao;
-    public PostController(PostRepository postDao){
+    private final UserRepository userDao;
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
+
 
     @GetMapping("/posts")
     public String index(Model model){
