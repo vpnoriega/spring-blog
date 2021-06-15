@@ -22,15 +22,14 @@ public class PostController{
 
     @GetMapping("/posts")
     public String index(Model model){
-        List<Post> PostList = new ArrayList<>();
-        PostList.add(new Post("Phonecase", "Old school phone case from the 90s"));
-        PostList.add(new Post("Headphones", "Old school wire headphones"));
+//        List<Post> PostList = new ArrayList<>();
+//        PostList.add(new Post("Phonecase", "Old school phone case from the 90s"));
+//        PostList.add(new Post("Headphones", "Old school wire headphones"));
 //views ex)
 // model.addAttribute("currentPosts", PostList);
 
  //jpa ex:
         model.addAttribute("currentPosts",postDao.findAll());
-//        model.addAttribute("delete",postDao.delete());
         return "posts/index";
     }
 
@@ -51,4 +50,12 @@ public class PostController{
     public String createForm(){
         return "create a new post";
     }
+
+    @PostMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+//create the postMapping and getmapping(add an attribute, talk to the param, create the form, connect the two , the save method
+
 }

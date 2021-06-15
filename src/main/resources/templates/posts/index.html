@@ -10,10 +10,13 @@
 <th:block th:each="post : ${currentPosts}"> <!--th:each tag allows us to loop over a collection. currentPosts var was created in the controller -->
     <h2 th:text="${post.title}"></h2> <!--referencing the constructor in Post.java-->
     <p th:text="${post.body}"></p>
+    <form method="post" th:action="@{/posts/delete/{id}(id=${post.id})}">
+        <button type="submit">Delete Post</button>
+    </form>
 </th:block>
 
 
-<button type="button">Delete Post</button>
+
 <br>
 <a href="/posts/1">Click here to view my exclusive posts!</a> <!-- This referencing the post/{id} method -->
 <footer th:replace="partials/navbar :: footer"></footer>
