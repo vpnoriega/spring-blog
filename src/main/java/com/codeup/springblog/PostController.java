@@ -1,5 +1,6 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,14 @@ public class PostController{
     //Dependency injection: Create a Repository instance and initialize it in the controller class constructor
     private final PostRepository postDao;
     private final UserRepository userDao;
-    public PostController(PostRepository postDao, UserRepository userDao){
+    private final EmailService emailService;
+
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
-
 
 
     @GetMapping("/posts")
@@ -51,8 +55,9 @@ public class PostController{
             User user = userDao.getById(1L);
             post.setOwner(user);
             Post savedPost = postDao.save(post);
+            emailService.prepareAndSend(post,"You sent a post", String.format("Here is the body of what you sent.%s %s",post.getTitle(),post.getBody()));
         return "redirect:/posts/" + savedPost.getId();
-    }
+    } //wherever you want to send an email is where you would tie in the email service
 
     // without the / in the front of the redirect url, it will append it to the current url
 
@@ -64,5 +69,6 @@ public class PostController{
 
 
 //create the postMapping and getmapping(add an attribute, talk to the param, create the form, connect the two , the save method
+
 
 }
