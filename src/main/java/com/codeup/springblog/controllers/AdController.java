@@ -26,3 +26,19 @@ public class AdController {
 }
 
 /**By extending JpaRepository, we inherit the CRUD functionality that the Spring framework provides, including methods for retrieving an Iterable Interface1 with all the ads (findAll), a specific ad (getOne), inserting or updating an ad (save), and deleting an ad (delete).*/
+
+/** whatever gets selected will get passed through */
+//<select multiple="multiple" th:field="${ad.categories}" class="form-control">
+//<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+//</select>
+//
+/** Idea Two: The Div Path
+//whatever the check box is , it will apply the field */
+
+//<div th:each="category : ${categories}">
+//<label th:class="${'category' + category.getId()}">
+//<input name="interests" type="checkbox" th:field="*{categories}" th:value="${category.getId()}" th:text="${category.getName()}"/>
+//</label>
+//</div>
+
+//list of cats, checked the dao, controller, got cats and sent to a view in a category, iterated the cats and hooked it up through form model binding

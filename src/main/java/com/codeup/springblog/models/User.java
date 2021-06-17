@@ -21,6 +21,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Post> posts;
 
@@ -39,6 +41,14 @@ public class User {
         this.email=email;
         this.username=username;
         this.password=password;
+    }
+
+    //Copy constructor is used as an alternative to cloning an object. Instead of using the method clone, we create a new object using the current values of another. This will be used in order to fulfill the contract defined by the interfaces in the security package.
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public long getId() {

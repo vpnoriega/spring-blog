@@ -3,7 +3,7 @@ package com.codeup.springblog.controllers;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.models.User;
-import com.codeup.springblog.daos.UserRepository;
+import com.codeup.springblog.daos.UsersRepository;
 import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ public class PostController{
 
     //Dependency injection: Create a Repository instance and initialize it in the controller class constructor
     private final PostRepository postDao;
-    private final UserRepository userDao;
+    private final UsersRepository userDao;
     private final EmailService emailService;
 
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
+    public PostController(PostRepository postDao, UsersRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
         this.emailService = emailService;
