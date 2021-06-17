@@ -5,9 +5,16 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: exercise-navbar"></nav>
-<h2 th:text="${singlePost.title}"></h2>
-<p th:text="${singlePost.body}"></p>
-<p th:text="${singlePost.owner.email}"></p>
+<br>
+<h4><strong>User Details:</strong></h4>
+<h5>Created by: <em><span th:text="${singlePost.owner.username}"></span></em></h5>
+<h5>User Email: <em><span th:text="${singlePost.owner.email}"></span></em></h5>
+
+<br>
+<h4><strong>Post Details:</strong></h4>
+<h5>Title: <span th:text="${singlePost.title}"></span></h5>
+<h5>Description: <span th:text="${singlePost.body}"></span></h5>
+
 <footer th:replace="partials/navbar :: footer"></footer>
 </body>
 </html>
