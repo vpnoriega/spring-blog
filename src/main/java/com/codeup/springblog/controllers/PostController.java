@@ -44,32 +44,49 @@ public class PostController{
         return "posts/show";
     }
 
-    @RequestMapping(path="/posts/create", method = RequestMethod.GET)
+    @GetMapping("/posts/create")
     public String viewCreateForm(Model model){
         model.addAttribute("post", new Post());
         return "posts/create";
     }
 
 
-    @PostMapping(path="/posts/create")
+    @PostMapping("/posts/create")
     public String createForm(@ModelAttribute Post post){
             User user = userDao.getById(1L);
             post.setOwner(user);
             Post savedPost = postDao.save(post);
-            emailService.prepareAndSend(post,"You sent a post", String.format("Here is the body of what you sent.%s %s",post.getTitle(),post.getBody()));
-        return "redirect:/posts/" + savedPost.getId();
-    } //wherever you want to send an email is where you would tie in the email service
-
-    // without the / in the front of the redirect url, it will append it to the current url
-
-    @PostMapping("/posts/delete/{id}")
-    public String deletePost(@PathVariable long id){
-        postDao.deleteById(id);
-        return "redirect:/posts";
+            emailService.prepareAndSend(post,"You sent a post", String.format("Here is the body of what you sent.%s %s",post.getTitle(),post.getBody())); //wherever you want to send an email is where you would tie in the email service
+        return "redirect:/posts/" + savedPost.getId(); // without the / in the front of the redirect url, it will append it to the current url
     }
 
 
+    @PostMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id){
+       postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+
 //create the postMapping and getmapping(add an attribute, talk to the param, create the form, connect the two , the save method
+
+    //First: get the same post id that is passed in to edit it:
+    @GetMapping("/posts/edit/{id}")
+    public String editPostForm(@PathVariable long id, Model model){
+        Post post = postDao.getById(id);
+        model.addAttribute("post", post);
+                return "posts/edit";
+    }
+
+//Second: update and save the changes:
+    @PostMapping("posts/edit/{id}")
+    public String editPost(@PathVariable long id, @RequestParam(name="title") String title, @RequestParam(name="body") String body){
+        Post post = postDao.getById(id); //find the post with this id in the pathVar
+        post.setTitle(title); //set the new title and body
+        post.setBody(body);
+
+        postDao.save(post); //similar to create post, it needs to "save" to the database
+        return "redirect:/posts/{id}";
+    }
 
 
 }
