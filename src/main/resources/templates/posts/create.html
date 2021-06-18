@@ -4,6 +4,7 @@
     <title>Create Form</title>
 </head>
 <body>
+<div class="container">
 <h3>Create a new posting: </h3>
 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
   Title:
@@ -14,5 +15,6 @@
   <br/>
   <input type="submit"/>
 </form>
+</div>
 </body>
 </html>
