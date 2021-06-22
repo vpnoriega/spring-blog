@@ -5,7 +5,7 @@ import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.daos.UsersRepository;
 import com.codeup.springblog.services.EmailService;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +54,8 @@ public class PostController{
 
     @PostMapping("/posts/create")
     public String createForm(@ModelAttribute Post post){
-            //User user = userDao.getById(1L); -- changed for security context holder: the expression accesses the principal, which is Spring Security's term for the logged in user, and casts it to our application's User object.
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.getById(1L); //changed for security context holder: the expression accesses the principal, which is Spring Security's term for the logged in user, and casts it to our application's User object.
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             post.setOwner(user);
             Post savedPost = postDao.save(post);
             emailService.prepareAndSend(post,"You sent a post", String.format("Here is the body of what you sent.%s %s",post.getTitle(),post.getBody())); //wherever you want to send an email is where you would tie in the email service
