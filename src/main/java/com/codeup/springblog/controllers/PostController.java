@@ -63,7 +63,7 @@ public class PostController{
     }
 
 
-    @PostMapping("/posts/delete/{id}")
+    @PostMapping("/posts/delete/{id}") //tells controller to respond to POST requests
     public String deletePost(@PathVariable long id){
        postDao.deleteById(id);
         return "redirect:/posts";

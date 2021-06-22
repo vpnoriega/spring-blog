@@ -14,7 +14,11 @@
 <h4><strong>Post Details:</strong></h4>
 <h5>Title: <span th:text="${singlePost.title}"></span></h5>
 <h5>Description: <span th:text="${singlePost.body}"></span></h5>
+<form th:action="@{/posts/edit/{id}(id=${singlePost.id})}" method="GET">
+<button type="submit">Edit Post</button>
+</form>
 
 <footer th:replace="partials/navbar :: footer"></footer>
+
 </body>
 </html>
